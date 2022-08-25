@@ -14,10 +14,18 @@ class _HomePageState extends State<HomePage> {
 
   void getPermission() async {
     Map<Permission, PermissionStatus> statuses = await [
+      Permission.camera,
+      Permission.microphone,
       Permission.locationWhenInUse,
     ].request();
 
     if (await Permission.locationWhenInUse.isPermanentlyDenied) {
+      openAppSettings();
+    }
+    if (await Permission.camera.isPermanentlyDenied) {
+      openAppSettings();
+    }
+    if (await Permission.microphone.isPermanentlyDenied) {
       openAppSettings();
     }
   }

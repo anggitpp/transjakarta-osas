@@ -58,17 +58,17 @@ class _ExamplePageState extends State<ExamplePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("Official InAppWebView website")),
+        appBar: AppBar(title: const Text("Official InAppWebView website")),
         body: SafeArea(
             child: Column(children: <Widget>[
           TextField(
-            decoration: InputDecoration(prefixIcon: Icon(Icons.search)),
+            decoration: const InputDecoration(prefixIcon: Icon(Icons.search)),
             controller: urlController,
             keyboardType: TextInputType.url,
             onSubmitted: (value) {
               var url = Uri.parse(value);
               if (url.scheme.isEmpty) {
-                url = Uri.parse("https://www.google.com/search?q=" + value);
+                url = Uri.parse("https://www.google.com/search?q=$value");
               }
               webViewController?.loadUrl(urlRequest: URLRequest(url: url));
             },
